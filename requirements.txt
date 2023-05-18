@@ -1,0 +1,7 @@
+requests
+regex
+asyncio
+aiohttp
+aiofiles
+bs4
+futures3

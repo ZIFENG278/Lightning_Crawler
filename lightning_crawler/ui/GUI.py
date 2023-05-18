@@ -1,6 +1,6 @@
 from PySide2.QtWidgets import QApplication, QMessageBox
 from PySide2.QtUiTools import QUiLoader
-from runtime import download_runtime, update_runtime
+from lightning_crawler.runtime.runtime import download_runtime, update_runtime
 
 class Gui:
 

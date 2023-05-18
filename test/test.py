@@ -1,6 +1,5 @@
 import json
 
-from util import  get_need_update_num
 #
 import os
 # def mkdir():
@@ -16,7 +15,7 @@ import os
 # a = get_need_update_num('优优_Yoo', 40)
 # print(a)
 
-f = open('albums_key_value.json', 'r')
+f = open('../lightning_crawler/json/albums_key_value.json', 'r')
 big_dict = json.load(f)
 full_folder_name = "dist/" + "周九九_JojoBaby/" + big_dict['周九九_JojoBaby']['[XiuRen]高清写真图 2023.02.22 No.6302 周jojobaby 牛仔裤美臀秀人网性感美臀 周jojobaby女神私房照_秀色女神'] + "[XiuRen]高清写真图 2023.02.22 No.6302 周jojobaby 牛仔裤美臀秀人网性感美臀 周jojobaby女神私房照_秀色女神"
 print(full_folder_name)

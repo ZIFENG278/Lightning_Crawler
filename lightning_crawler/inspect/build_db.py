@@ -1,23 +1,23 @@
 import json
 import os
 
-from download import Download
+from lightning_crawler.crawler_core.download import Download
 
 def get_roles_database_dict():
-    with open("roles_database.json", "r") as f:
+    with open("../json/roles_database.json", "r") as f:
         roles_database_dict = json.load(f)
     return roles_database_dict
 
 
 def init_json():
     init_dict = {}
-    with open("roles_database.json", "w") as f:
+    with open("../json/roles_database.json", "w") as f:
         json.dump(init_dict, f, ensure_ascii=False)
         print("database init")
 
 
 def get_roles_dict():
-    with open("roles.json", "r") as f:
+    with open("../json/roles.json", "r") as f:
         roles_dict = json.load(f)
     return roles_dict
 
@@ -76,7 +76,7 @@ class RoleDict(Download):
 
 class BuildDataBase:
     def __init__(self):
-        files_list = os.listdir("./")
+        files_list = os.listdir("../../")
         if "roles_database.json" not in files_list:
             init_json()
             self.roles_database_dict = get_roles_database_dict()

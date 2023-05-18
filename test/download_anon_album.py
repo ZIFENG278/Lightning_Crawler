@@ -1,4 +1,4 @@
-from download import Download
+from lightning_crawler.crawler_core.download import Download
 
 anon = [
     "https://www.xsnvshen.com/album/40963",

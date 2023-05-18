@@ -1,9 +1,9 @@
-from download import Download
+from lightning_crawler.crawler_core.download import Download
 import json
 
 
 def download_runtime(role_path):
-    with open('roles.json', 'r') as f:
+    with open('../lightning_crawler/json/roles.json', 'r') as f:
         roles_dict = json.load(f)
     # a = roles_dict.items()
     # print(type(a))
@@ -14,7 +14,7 @@ download_runtime('杨晨晨_Yome')
 
 
 def inspect_update_runtime(role_path):
-    with open('roles.json', 'r') as f:
+    with open('../lightning_crawler/json/roles.json', 'r') as f:
         roles_dict = json.load(f)
     # a = roles_dict.items()
     # print(type(a))
@@ -23,10 +23,10 @@ def inspect_update_runtime(role_path):
 
 
 def inspect_img_num_runtime(role_path):
-    f = open('roles.json', 'r')
+    f = open('../lightning_crawler/json/roles.json', 'r')
     roles_dict = json.load(f)
     f.close()
-    f = open('albums_key_value.json', 'r')
+    f = open('../lightning_crawler/json/albums_key_value.json', 'r')
     big_dict = json.load(f)
     f.close()
     # a = roles_dict.items()

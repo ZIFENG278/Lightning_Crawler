@@ -6,7 +6,7 @@ import asyncio
 import aiohttp
 import aiofiles
 from bs4 import BeautifulSoup
-from util import mkdir_with_new, get_need_update_num, update_single_role_json
+from lightning_crawler.util import mkdir_with_new, get_need_update_num
 from concurrent.futures import ThreadPoolExecutor
 
 

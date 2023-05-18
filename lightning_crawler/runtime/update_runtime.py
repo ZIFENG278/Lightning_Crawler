@@ -1,9 +1,9 @@
-from download import Download
+from lightning_crawler.crawler_core.download import Download
 import json
 from concurrent.futures import ThreadPoolExecutor
 
 def update_runtime():
-    with open('roles.json', 'r') as f:
+    with open('../json/roles.json', 'r') as f:
         roles_dict = json.load(f)
 
     # a = roles_dict.items()

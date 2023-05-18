@@ -1,14 +1,14 @@
-from download import Download
+from lightning_crawler.crawler_core.download import Download
 import json
 import os
-from util import update_single_role_json
+from lightning_crawler.util import update_single_role_json
 
 class FixIndex(Download):
     def __init__(self, role_url, role_path):
         super().__init__(role_url, role_path)
 
     def get_json_dict(self):
-        with open('albums_key_value.json', 'r') as f:
+        with open('../json/albums_key_value.json', 'r') as f:
             roles_dict = json.load(f)
         # print(json.dumps(roles_dict ,ensure_ascii=False, indent=4))
         return roles_dict
@@ -27,7 +27,7 @@ class FixIndex(Download):
                 print("change name form " + old_name)
                 print("to " + new_name)
 
-        update_single_role_json(role_path=self.role_path, path='./')
+        update_single_role_json(role_path=self.role_path, path='../../')
         # return all_href
 
 

@@ -32,8 +32,8 @@ class FixIndex(Download):
 
 
 
-test = FixIndex('https://www.xsnvshen.com/girl/22490', '月音瞳_YueYintong')
-a = test.fix_index()
+# test = FixIndex('https://www.xsnvshen.com/girl/22490', '月音瞳_YueYintong')
+# a = test.fix_index()
 # print(a)
 
 # def test():

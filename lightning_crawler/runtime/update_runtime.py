@@ -20,4 +20,4 @@ def update_runtime():
     #
     # role.start()
 
-update_runtime()
+# update_runtime()

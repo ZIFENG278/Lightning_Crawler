@@ -3,31 +3,38 @@ import json
 import os
 from lightning_crawler.json.key_value_to_json import update_single_role_json
 
-class FixIndex(Download):
-    def __init__(self, role_url, role_path):
-        super().__init__(role_url, role_path)
-
+class FixIndex():
+    """
+        base database to fix index
+    """
+    def __init__(self, role_path, path_to_json=None, path_to_dist=None):
+        self.role_path = role_path
+        self.path_to_json = path_to_json
+        self.path_to_dist = path_to_dist
     def get_json_dict(self):
-        with open('../json/albums_key_value.json', 'r') as f:
+        with open(self.path_to_json + 'json/database/' + self.role_path + ".json", 'r') as f:
             roles_dict = json.load(f)
         # print(json.dumps(roles_dict ,ensure_ascii=False, indent=4))
         return roles_dict
 
     def fix_index(self):
-        old_big_dict = self.get_json_dict()
-        all_href = self.get_all_album_link()
-        for index, href in enumerate(all_href):
-            index_str = str(len(all_href) - 1 - index).rjust(3, '0')
-            date = self.get_pre_data(href)
-            if date[1] in old_big_dict[self.role_path] and old_big_dict[self.role_path][date[1]] != index_str:
-                old_name = old_big_dict[self.role_path][date[1]] + date[1]
-                new_name = index_str + date[1]
-                pwd = ''
-                os.rename("dist/" + self.role_path + "/" + old_name, "dist/" + self.role_path + "/" + new_name)
-                print("change name form " + old_name)
-                print("to " + new_name)
+        album_folders = os.listdir(self.path_to_dist + 'dist/' + self.role_path)
+        role_database_dict = self.get_json_dict()
+        for album_folder in album_folders:
+            album_index = album_folder[:3]
+            album_title = album_folder[3:]
+            if album_title != role_database_dict['album'][album_index]['folder_name']:
+                for i in role_database_dict['album'].values():
+                    # print(i)
+                    if i['folder_name'] == album_title:
+                        new_name = i['index'] + i['folder_name']
 
-        update_single_role_json(role_path=self.role_path, path='../../')
+                        os.rename(self.path_to_dist + "dist/" + self.role_path + "/" + album_folder,
+                                  self.path_to_dist + "dist/" + self.role_path + "/" + new_name)
+                        print("change name form " + album_folder)
+                        print("to " + new_name)
+
+        # update_single_role_json(role_path=self.role_path, path='../../')
         # return all_href
 
 

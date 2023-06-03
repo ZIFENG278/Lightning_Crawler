@@ -25,6 +25,9 @@ def get_roles_dict(path_to_json=None):
 
 
 class RoleDict(Download):
+    """
+    RoleDict use to build role database json
+    """
     def __init__(self, role_path=None, role_url=None, path_to_json=None, roles_dict=None):
         super().__init__(role_url=role_url, role_path=role_path)
         self.album_index_dict = {}  # TODO
@@ -135,6 +138,9 @@ class RoleDict(Download):
 
 
 class BuildDataBase:
+    """
+    buildDataBase use to build hold full database
+    """
     def __init__(self, path_to_json):
         self.path_to_json = path_to_json
         files_list = os.listdir(self.path_to_json + "json/database")

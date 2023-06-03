@@ -27,10 +27,12 @@ import os
 # filename = 'zzf.json'
 # a = filename[:-5]
 # print(a)
-split_num = 5
-print(75//5)
-num_tasks = 75 // split_num + 1 if 75 % split_num != 0 else 75 // split_num
-print(num_tasks)
+# split_num = 5
+# print(75//5)
+# num_tasks = 75 // split_num + 1 if 75 % split_num != 0 else 75 // split_num
+# print(num_tasks)
+a = "zzfzzf"
+print(a[:3])
 
 
 

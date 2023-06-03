@@ -1,6 +1,9 @@
 from lightning_crawler.crawler_core import Download
 import os
 class Inspector(Download):
+    """
+    Inspector base on local database to inspect the album miss or img miss
+    """
     def __init__(self, role_path=None, role_url=None):
         super().__init__(role_url=role_url, role_path=role_path)
 

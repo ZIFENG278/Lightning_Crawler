@@ -11,6 +11,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 class Download:
+    """
+    Download image class base on role url
+    """
     def __init__(self, role_url=None, role_path=None):
         self.role_url = role_url
         self.role_path = role_path
@@ -72,7 +75,7 @@ class Download:
         try:
             all_href = self.get_all_album_link()
 
-        except:  # TODO find expect special Error
+        except :  # TODO find expect special Error
             if self.role_path != "anonymous":
                 print('\033[93m' + self.role_path + " url broken. can not access the url. FAIL" + '\033[0m')
                 access = False

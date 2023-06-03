@@ -10,7 +10,7 @@ def download_runtime(role_path):
     role = Download(role_url=roles_dict.get(role_path), role_path=role_path)
     role.start()
 
-download_runtime('周九九_JojoBaby')
+# download_runtime('周九九_JojoBaby')
 
 
 def inspect_update_runtime(role_path):

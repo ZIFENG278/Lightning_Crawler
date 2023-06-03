@@ -51,6 +51,6 @@ def update_single_role_json(role_path=None, path=None):  # TODO implement and ch
         # print(json.dumps(big_dict, ensure_ascii=False, indent=4))
 
 
-all_key_value_to_json(path='../../')
+# all_key_value_to_json(path='../../')
 
 # update_single_role_json(role_path='月音瞳_YueYintong', path="../") # TODO check ourside used would fales JSONDecodeError

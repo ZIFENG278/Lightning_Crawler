@@ -1,7 +1,7 @@
 from lightning_crawler.crawler_core.download import Download
 import json
 import os
-from lightning_crawler.util import update_single_role_json
+from lightning_crawler.json.key_value_to_json import update_single_role_json
 
 class FixIndex(Download):
     def __init__(self, role_url, role_path):

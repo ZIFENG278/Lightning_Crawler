@@ -31,8 +31,8 @@ import os
 # print(75//5)
 # num_tasks = 75 // split_num + 1 if 75 % split_num != 0 else 75 // split_num
 # print(num_tasks)
-a = "zzfzzf"
-print(a[:3])
+a = "zz"
+print(a[:100])
 
 
 

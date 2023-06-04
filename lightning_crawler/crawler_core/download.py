@@ -156,3 +156,8 @@ class Download:
                 print(self.role_path + "\tupdate: " + str(need_update_num) + "\tTotal: " + str(len(all_href)))
 
         # update_single_role_json(self.role_path) # TODO fix this bug
+
+
+
+
+

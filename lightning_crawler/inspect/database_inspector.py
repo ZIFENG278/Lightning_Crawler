@@ -1,25 +1,13 @@
 from lightning_crawler.crawler_core import Download
 from lightning_crawler.inspect.build_db import get_roles_dict
-from  lightning_crawler.inspect.build_db import BuildDataBase
+from lightning_crawler.inspect.build_db import BuildDataBase
 import json
 import os
 
-# files = os.listdir('../lightning_crawler/json/database')
-# files.remove('roles_database.json')
-#
-# for file in files:
-#     with open('../lightning_crawler/json/database/' + file, 'r') as f:
-#         dict = json.load(f)
-#
-#         if dict['online_total'] != len(dict['album'].keys()):
-#             print(file + " not correct" + " online " + str(dict['online_total']) + " : database " + str(len(dict['album'].keys())))
-#
-#         else:
-#             print(file + "correct")
-#
-#             # print()
-#             # print(json.dumps(dict, ensure_ascii=False, indent=4))
 class DatabaseInspector(BuildDataBase):
+    """
+    This class to fix thr personal db if the db is not full
+    """
     def __init__(self, path_to_json=None):
         super().__init__(path_to_json)
 
@@ -27,6 +15,7 @@ class DatabaseInspector(BuildDataBase):
         role_downloader = Download(role_url=person_dict['url'], role_path=person_dict['role_name'])
         all_href, access = role_downloader.get_all_album_link_wrapper()
         person_dict['online_total'] = len(all_href)
+
         for i in range(len(all_href)):
             index_str = str(i).rjust(3, '0')
             if index_str not in person_dict['album'].keys():
@@ -75,4 +64,4 @@ class DatabaseInspector(BuildDataBase):
                 # print(json.dumps(dict, ensure_ascii=False, indent=4))
 
 
-        self.create_roles_database_json()
+        # self.create_roles_database_json()

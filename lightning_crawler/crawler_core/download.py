@@ -6,7 +6,8 @@ import asyncio
 import aiohttp
 import aiofiles
 from bs4 import BeautifulSoup
-from lightning_crawler.util import mkdir_with_new, get_need_update_num
+from lightning_crawler.util.mkdir import mkdir_with_new
+from lightning_crawler.util.get_folder_num import get_need_update_num
 from concurrent.futures import ThreadPoolExecutor
 
 

@@ -29,6 +29,12 @@ def get_role_database_dict(path_to_json=None, role_path=None):
         role_database_dict = json.load(f)
     return role_database_dict
 
+# def get_dict(path_to_json=None, role_path=None, json_name=None):
+#     with open(path_to_json + "json/database/" + json_name, "r") as f:
+#         roles_dict = json.load(f)
+#     return roles_dict
+
+
 def write_in_json(file_path=None, content=None):
     with open(file_path, "w") as f:
         json.dump(content, f, ensure_ascii=False)

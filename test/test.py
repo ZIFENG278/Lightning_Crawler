@@ -31,8 +31,14 @@ import os
 # print(75//5)
 # num_tasks = 75 // split_num + 1 if 75 % split_num != 0 else 75 // split_num
 # print(num_tasks)
-a = "zz"
-print(a[:100])
-
+# a = [1, 2, 3, 4, 5]
+# for i in range(5, -1, -1):
+#     print(i)
+a = "022"
+for i in range(5 - 1,
+               5 - 5 - 1,
+               -1):
+    index = str(i).rjust(3, '0')
+    print(i)
 
 

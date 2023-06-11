@@ -1,6 +1,7 @@
-from lightning_crawler.crawler_core import Download
+from lightning_crawler.crawler_core.download import *
+from lightning_crawler.util.get_folder_num import get_need_update_num
 import os
-class Inspector(Download):
+class Inspector(Download):  # TODO not finish
     """
     Inspector base on local database to inspect the album miss or img miss
     """

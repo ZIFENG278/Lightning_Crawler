@@ -1,4 +1,4 @@
-from lightning_crawler.crawler_core import Download
+from lightning_crawler.crawler_core.download import Download
 from lightning_crawler.inspect.build_db import get_roles_dict
 from lightning_crawler.inspect.build_db import BuildDataBase
 import json
@@ -44,7 +44,7 @@ class DatabaseInspector(BuildDataBase):
     def database_inspect(self):
         # roles_dict = get_roles_dict()
         files = os.listdir(self.path_to_json + 'json/database')
-        files.remove('roles_database.json')
+        # files.remove('roles_database.json')
 
         for file in files:
             f = open(self.path_to_json + 'json/database/' + file, 'r')

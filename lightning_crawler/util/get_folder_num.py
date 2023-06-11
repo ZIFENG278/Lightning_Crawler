@@ -1,5 +1,6 @@
 import os
 from .mkdir import mkdir
+# from lightning_crawler.inspect.build_db import get_dict
 
 
 def get_folder_num(path):
@@ -16,3 +17,10 @@ def get_need_update_num(path, all_href_num):
     return need_update_num
 
 
+def get_need_update_num_from_db(path, role_db):
+    local_exit_folder_num = get_folder_num("../dist/" + path)
+    need_update_num = role_db['online_total'] - local_exit_folder_num
+    return need_update_num
+# def get_need_update_num_from_db(path):
+#     local_exit_folder_num = get_folder_num("../dist/" + path)
+#     db_online = get_dict(path_to_json='../lightning/')

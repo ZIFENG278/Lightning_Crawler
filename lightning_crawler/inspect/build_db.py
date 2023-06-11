@@ -269,14 +269,3 @@ class UpdateRoleDatabaseWrapper():
                                                     path_to_json=self.path_to_json,
                                                     path_to_dist=self.path_to_dist)
                 t.submit(update_role_db.update)
-
-
-
-
-
-
-
-
-
-
-

@@ -6,6 +6,7 @@ class DownloadV2(Download):
     """
     Download image class base on database, can not install anonymous album
     if you need download anonymous please use downloadV1
+    upgrade and download
     """
     def __init__(self, role_url=None, role_path=None):
         super().__init__(role_url=role_url, role_path=role_path)

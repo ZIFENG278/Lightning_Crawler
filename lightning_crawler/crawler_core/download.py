@@ -76,7 +76,7 @@ class Download:
         try:
             all_href = self.get_all_album_link()
 
-        except :  # TODO find expect special Error
+        except:
             if self.role_path != "anonymous":
                 print('\033[93m' + self.role_path + " url broken. can not access the url. FAIL" + '\033[0m')
                 access = False
@@ -156,7 +156,7 @@ class Download:
                     # time.sleep(60)
                 print(self.role_path + "\tupdate: " + str(need_update_num) + "\tTotal: " + str(len(all_href)))
 
-        # update_single_role_json(self.role_path) # TODO fix this bug
+        # update_single_role_json(self.role_path) #
 
 
 

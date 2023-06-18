@@ -2,15 +2,19 @@ from lightning_crawler.crawler_core.download import Download
 import json
 import os
 from lightning_crawler.json.key_value_to_json import update_single_role_json
+from lightning_crawler.inspect.build_db import get_role_database_dict
+
 
 class FixIndex():
     """
         base database to fix index
     """
+
     def __init__(self, role_path, path_to_json=None, path_to_dist=None):
         self.role_path = role_path
         self.path_to_json = path_to_json
         self.path_to_dist = path_to_dist
+
     def get_json_dict(self):
         with open(self.path_to_json + 'json/database/' + self.role_path + ".json", 'r') as f:
             roles_dict = json.load(f)
@@ -19,7 +23,8 @@ class FixIndex():
 
     def fix_index(self):
         album_folders = os.listdir(self.path_to_dist + 'dist/' + self.role_path)
-        role_database_dict = self.get_json_dict()
+        role_database_dict = get_role_database_dict(path_to_json=self.path_to_json,
+                                                    role_path=self.role_path)
         for album_folder in album_folders:
             album_index = album_folder[:3]
             album_title = album_folder[3:]
@@ -36,8 +41,6 @@ class FixIndex():
 
         # update_single_role_json(role_path=self.role_path, path='../../')
         # return all_href
-
-
 
 # test = FixIndex('https://www.xsnvshen.com/girl/22490', '月音瞳_YueYintong')
 # a = test.fix_index()

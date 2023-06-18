@@ -83,15 +83,20 @@ class RoleDict(Download):
 
         # pass
 
-    async def get_album_tasks(self, all_href, len_all_href, state):
+    async def get_album_tasks(self, all_href, len_all_href, state=None, miss_index_str=None):
         """
+        :param index_str: use to fix the db which not full
         :param state: to judge is it update or build db
         :param all_href: all_need_update href
         :param len_all_href: update need to calculate index
         :return:
         """
         # tasks = []
-        split_num = 5
+        split_num = 100
+        if len(all_href) > 450:
+            all_href = all_href[:450]
+            print(self.role_path + "all href bigger then 500, it must need use db inspect to keep complete ")
+
         num_tasks = len(all_href) // split_num + 1 if len(all_href) % split_num != 0 else len(all_href) // split_num
         print(num_tasks)
         for i in range(num_tasks):
@@ -100,17 +105,20 @@ class RoleDict(Download):
             tasks = []
             for index, href in enumerate(split_hrefs):
                 # index_str = str(len(all_href) - 1 - index).rjust(3, '0')
-                index_str = str(len_all_href - 1 - (split_num * i) - index).rjust(3, '0')
+                if miss_index_str is None:
+                    index_str = str(len_all_href - 1 - (split_num * i) - index).rjust(3, '0')
+                else:
+                    index_str = miss_index_str[index]
                 # print(index_str)
                 tasks.append(self.aio_get_album_info(href, index_str))
 
             await asyncio.wait(tasks)
-            print("stop crawler for 10 seconds")
+            print("stop crawler for 15 seconds")
             if state is None:
-                time.sleep(10)
+                time.sleep(0.1)
 
-    def get_albums_info(self, all_href, len_all_href, state=None):
-        asyncio.run(self.get_album_tasks(all_href=all_href, len_all_href=len_all_href, state=state))
+    def get_albums_info(self, all_href, len_all_href, state=None, miss_index_str=None):
+        asyncio.run(self.get_album_tasks(all_href=all_href, len_all_href=len_all_href, state=state, miss_index_str=miss_index_str))
         # asyncio.run(self.)
 
     def save_role_database_json(self, middle_dict):
@@ -200,7 +208,7 @@ class BuildDataBase:
         #     json.dump(self.roles_database_dict, f, ensure_ascii=False)
         #     print("database success write in")
 
-    def update_database(self):
+    def build_database(self):
         roles_dict = get_roles_dict(self.path_to_json)
         exist_role_json = os.listdir(self.path_to_json + 'json/database')
         if 'roles_database.json' in exist_role_json:

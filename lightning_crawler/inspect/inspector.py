@@ -2,7 +2,7 @@ from lightning_crawler.crawler_core.downloadv2 import *
 from lightning_crawler.inspect.build_db import get_role_database_dict
 
 import os
-class Inspector(DownloadV2):  # TODO not finish
+class Inspector(DownloadV2):
     """
     Inspector base on local database to inspect the album miss or img miss
     """
@@ -31,9 +31,9 @@ class Inspector(DownloadV2):  # TODO not finish
         #     if add_index + data[1] in os.listdir(self.role_path) and data[2] != len(os.listdir(self.role_path + "/" + data[1])):
         #             os.
 
-    # def redownload(self, url, small_dict): # TODO redownload the special img, don't download hold album to decrease the stream
+    # def redownload(self, url, small_dict):
     #     data = self.get_pre_data(url)
-    #     if data[1] in small_dict:   # TODO continues
+    #     if data[1] in small_dict:
     #         # print(data[1])
     #         full_album_name = small_dict[data[1]] + data[1]
     #         img_num = len(os.listdir("dist/" + self.role_path + "/" + full_album_name))
@@ -62,7 +62,7 @@ class Inspector(DownloadV2):  # TODO not finish
     def fix_loss_image(self, index, loss_images):
         asyncio.run(self.get_tasksV2(index, loss_images))
 
-    def inspect_image_num(self):   # TODO consider a data structural use JSON big O2 is too slow use mutil thread
+    def inspect_image_num(self):
         files = os.listdir('../dist/' + self.role_path)
         for i in files:
             local_image_list = os.listdir('../dist/' + self.role_path + '/' + i)

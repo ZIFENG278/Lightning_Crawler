@@ -58,7 +58,7 @@ roles = {
     '李浅浅_Danny': 'https://www.xsnvshen.com/girl/27667',
     '77_Qiqi': 'https://www.xsnvshen.com/girl/28192', # 16
     '茜茜_Kimi': 'https://www.xsnvshen.com/girl/22149',  # 6
-    '余贝拉_Kimi': 'https://www.xsnvshen.com/girl/21017',  # 52
+    '余贝拉_Bella': 'https://www.xsnvshen.com/girl/21017',  # 52
 
 }
 

@@ -34,11 +34,18 @@ import os
 # a = [1, 2, 3, 4, 5]
 # for i in range(5, -1, -1):
 #     print(i)
-a = "022"
-for i in range(5 - 1,
-               5 - 5 - 1,
-               -1):
-    index = str(i).rjust(3, '0')
+# a = "022"
+# for i in range(5 - 1,
+#                5 - 5 - 1,
+#                -1):
+#     index = str(i).rjust(3, '0')
+#     print(i)
+
+a = {
+    "1" : 3,
+    "2" : 4,
+    "aa" : 5
+}
+
+for i in range(len(a)):
     print(i)
-
-

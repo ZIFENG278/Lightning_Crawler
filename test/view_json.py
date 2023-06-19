@@ -8,4 +8,4 @@ def view_json(path):
     # print(json.dumps(a, indent=4))
     print(json.dumps(a, ensure_ascii=False, indent=4))
 
-view_json('../lightning_crawler/json/database/杨晨晨_Yome.json')
+view_json('../lightning_crawler/json/database/余贝拉_Bella.json')

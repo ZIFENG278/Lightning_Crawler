@@ -29,15 +29,21 @@ class FixIndex():
             album_index = album_folder[:3]
             album_title = album_folder[3:]
             if album_title != role_database_dict['album'][album_index]['folder_name']:
+                fix_status = False
                 for i in role_database_dict['album'].values():
                     # print(i)
                     if i['folder_name'] == album_title:
+                        # print("2222")
                         new_name = i['index'] + i['folder_name']
 
                         os.rename(self.path_to_dist + "dist/" + self.role_path + "/" + album_folder,
                                   self.path_to_dist + "dist/" + self.role_path + "/" + new_name)
                         print("change name form " + album_folder)
                         print("to " + new_name)
+                        fix_status = True
+
+                if not fix_status:
+                    print(album_folder)
 
         # update_single_role_json(role_path=self.role_path, path='../../')
         # return all_href

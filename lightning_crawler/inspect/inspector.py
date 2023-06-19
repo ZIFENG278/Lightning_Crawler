@@ -8,7 +8,7 @@ class Inspector(DownloadV2):
     """
     def __init__(self, role_path=None, role_url=None):
         super().__init__(role_url=role_url, role_path=role_path)
-        self.role_database = get_role_database_dict('../lightning_crawler/', self.role_path)
+        # self.role_database = get_role_database_dict('../lightning_crawler/', self.role_path)
 
     # def inspect_update(self, null=None):
     #     try:

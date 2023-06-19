@@ -23,7 +23,7 @@ class DatabaseInspector():
         miss_index_href = []
         miss_index_str = []
 
-        for i in range(len(all_href)):  ## TODO use async form RoleDict
+        for i in range(len(all_href) - 1, -1, -1):  ## TODO use async form RoleDict:: finish
             index_str = str(i).rjust(3, '0')
             if index_str not in person_dict['album'].keys():
                 index = len(all_href) - 1 - i
@@ -37,6 +37,11 @@ class DatabaseInspector():
                 #                    'harf_link': data[0]
                 #                    }
                 # person_dict['album'][index_str] = album_info_dict
+        # print(miss_index_str)
+        # a = zip(miss_index_href, miss_index_str)
+        # print(list(a))
+
+
         role_roledict.get_albums_info(all_href=miss_index_href, len_all_href=len(all_href), miss_index_str=miss_index_str)
         person_dict['album'].update(role_roledict.album_index_dict)
         person_dict['album'] = dict(sorted(person_dict['album'].items(), key=lambda item: item[0]))

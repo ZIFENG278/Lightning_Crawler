@@ -25,9 +25,12 @@ def get_roles_dict(path_to_json=None):
     return roles_dict
 
 def get_role_database_dict(path_to_json=None, role_path=None):
-    with open(path_to_json + "json/database/" + role_path + ".json", "r") as f:
-        role_database_dict = json.load(f)
-    return role_database_dict
+    try:
+        with open(path_to_json + "json/database/" + role_path + ".json", "r") as f:
+            role_database_dict = json.load(f)
+        return role_database_dict
+    except:
+        print("no " + role_path + ".json")
 
 # def get_dict(path_to_json=None, role_path=None, json_name=None):
 #     with open(path_to_json + "json/database/" + json_name, "r") as f:
@@ -108,7 +111,7 @@ class RoleDict(Download):
                 if miss_index_str is None:
                     index_str = str(len_all_href - 1 - (split_num * i) - index).rjust(3, '0')
                 else:
-                    index_str = miss_index_str[index]
+                    index_str = miss_index_str[i * num_tasks + index]
                 # print(index_str)
                 tasks.append(self.aio_get_album_info(href, index_str))
 

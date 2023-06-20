@@ -31,6 +31,9 @@ anon = [
     "https://www.xsnvshen.com/album/40894",
     "https://www.xsnvshen.com/album/40883",
     "https://www.xsnvshen.com/album/40876",
+    "https://www.xsnvshen.com/album/41043",
+    "https://www.xsnvshen.com/album/41047",
+    "https://www.xsnvshen.com/album/41106"
 
 
 ]
@@ -45,4 +48,4 @@ def download_anon_album(url, path="anonymous"):
     # g = p.get_pre_data(url)
     # print(g)
 
-download_anon_album("https://www.xsnvshen.com/album/40883", "anonymous")
+download_anon_album("https://www.xsnvshen.com/album/41106", "anonymous")

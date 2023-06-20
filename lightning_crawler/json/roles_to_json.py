@@ -59,6 +59,23 @@ roles = {
     '77_Qiqi': 'https://www.xsnvshen.com/girl/28192', # 16
     '茜茜_Kimi': 'https://www.xsnvshen.com/girl/22149',  # 6
     '余贝拉_Bella': 'https://www.xsnvshen.com/girl/21017',  # 52
+    '夏美酱_XiaMeijiang': 'https://www.xsnvshen.com/girl/21501',
+    '晓彗_Icon': 'https://www.xsnvshen.com/girl/24041',
+    '方子萱_FangZixuan': 'https://www.xsnvshen.com/girl/22469',
+    '冯木木_Lris': 'https://www.xsnvshen.com/girl/22456',
+    '玥儿玥_Er': 'https://www.xsnvshen.com/girl/27997',
+    '艾小青_AiXiaoqing': 'https://www.xsnvshen.com/girl/24691',
+    '张雨萌_ZhangYumeng': 'https://www.xsnvshen.com/girl/17198',
+    '葛征_GeZheng': 'https://www.xsnvshen.com/girl/23282',
+    '陈小喵_ChenXiaomiao': 'https://www.xsnvshen.com/girl/27717',
+    '艾静香_AiJingxiang': 'https://www.xsnvshen.com/girl/27556',
+    '心妍小公主_XinYanXiaoGongZhu': 'https://www.xsnvshen.com/girl/16232',
+    '豆瓣酱_Doubanjiang': 'https://www.xsnvshen.com/girl/28113',
+    '许诺_Sabrina' : 'https://www.xsnvshen.com/girl/18879',
+    '美七_Mia': 'https://www.xsnvshen.com/girl/27999',
+    '顾乔楠_Cora': 'https://www.xsnvshen.com/girl/27257',
+    '陈宇曦_Niki': 'https://www.xsnvshen.com/girl/21887',
+
 
 }
 

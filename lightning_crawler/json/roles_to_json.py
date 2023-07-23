@@ -75,7 +75,21 @@ roles = {
     '美七_Mia': 'https://www.xsnvshen.com/girl/27999',
     '顾乔楠_Cora': 'https://www.xsnvshen.com/girl/27257',
     '陈宇曦_Niki': 'https://www.xsnvshen.com/girl/21887',
-
+    '九月生_JiuYuesheng': 'https://www.xsnvshen.com/girl/26563',
+    '露露_Luncy': 'https://www.xsnvshen.com/girl/26740',
+    '周慕汐_Baby': 'https://www.xsnvshen.com/girl/27886',
+    '言沫_YanMo': 'https://www.xsnvshen.com/girl/27868',
+    '徐安安_XuAnan': 'https://www.xsnvshen.com/girl/27828',
+    '刘钰儿_LiuYuer': 'https://www.xsnvshen.com/girl/22808',
+    '凯竹_KaiZhu': 'https://www.xsnvshen.com/girl/22671',
+    '易阳_Silvia': 'https://www.xsnvshen.com/girl/21743',
+    '小狐狸_Kathryn': 'https://www.xsnvshen.com/girl/24986',
+    '娜露_Selena': 'https://www.xsnvshen.com/girl/21745',
+    '蓝夏_Akasha': 'https://www.xsnvshen.com/girl/24004',
+    '柳侑绮_SevenBaby': 'https://www.xsnvshen.com/girl/17596',
+    '萌琪琪_MengQiqi': 'https://www.xsnvshen.com/girl/23033',
+    '周大萌_ZhouDameng': 'https://www.xsnvshen.com/girl/22345',
+    '艾莉_Evelyn': 'https://www.xsnvshen.com/girl/21542',
 
 }
 

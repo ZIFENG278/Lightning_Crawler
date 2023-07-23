@@ -29,8 +29,10 @@ def get_role_database_dict(path_to_json=None, role_path=None):
         with open(path_to_json + "json/database/" + role_path + ".json", "r") as f:
             role_database_dict = json.load(f)
         return role_database_dict
-    except:
+    except TypeError as e:
+        print(e)
         print("no " + role_path + ".json")
+
 
 # def get_dict(path_to_json=None, role_path=None, json_name=None):
 #     with open(path_to_json + "json/database/" + json_name, "r") as f:

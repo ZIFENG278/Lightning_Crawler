@@ -59,7 +59,7 @@ class DownloadV2(Download):
                 # need_update_info = self.role_database['album'][add_index]
                 # print(need_update_info)
                 # print(need_update_num)
-                with ThreadPoolExecutor(8) as t:  # 更改线程池数量
+                with ThreadPoolExecutor(4) as t:  # 更改线程池数量
                     for i in need_update_index_str:
                         t.submit(self.down_one_albumV2, index_str=i)
                         # time.sleep(60)

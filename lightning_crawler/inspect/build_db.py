@@ -103,7 +103,7 @@ class RoleDict(Download):
             print(self.role_path + "all href bigger then 500, it must need use db inspect to keep complete ")
 
         num_tasks = len(all_href) // split_num + 1 if len(all_href) % split_num != 0 else len(all_href) // split_num
-        print(num_tasks)
+        # print(num_tasks)
         for i in range(num_tasks):
             split_hrefs = all_href[split_num*i: split_num*i+split_num]
             print("begin " + str(i + 1), "total: " + str(num_tasks))
@@ -118,7 +118,7 @@ class RoleDict(Download):
                 tasks.append(self.aio_get_album_info(href, index_str))
 
             await asyncio.wait(tasks)
-            print("stop crawler for 15 seconds")
+            # print("stop crawler for 15 seconds")
             if state is None:
                 time.sleep(0.1)
 
@@ -241,6 +241,9 @@ class BuildDataBase:
 # a.update_database()
 
 class UpdateRoleDatabase(RoleDict):
+    """
+    Update Role Database
+    """
     def __init__(self, role_path=None, role_url=None, path_to_json=None, roles_dict=None, path_to_dist=None):
         super().__init__(role_path=role_path, role_url=role_url, path_to_json=path_to_json, roles_dict=roles_dict)
         self.path_to_dict = path_to_dist
@@ -270,8 +273,8 @@ class UpdateRoleDatabaseWrapper():
     """
     Wrapper to update full db
     """
-    def __init__(self, path_to_json, path_tp_dist):
-        self.path_to_dist = path_tp_dist
+    def __init__(self, path_to_json, path_to_dist):
+        self.path_to_dist = path_to_dist
         self.path_to_json = path_to_json
 
     def update_all(self):

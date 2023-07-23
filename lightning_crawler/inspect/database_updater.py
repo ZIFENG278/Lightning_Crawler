@@ -5,6 +5,9 @@ from lightning_crawler.inspect.build_db import RoleDict
 
 
 class DatabaseUpdater(RoleDict):
+    """
+    no need
+    """
     def __init__(self):
         pass
 

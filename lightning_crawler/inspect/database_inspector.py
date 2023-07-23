@@ -17,8 +17,8 @@ class DatabaseInspector():
     # async def get_album_tasks(self, all_href, len_all_href, state):
 
     def fix_personal_database(self, file, person_dict):
-        role_roledict = RoleDict(role_url=person_dict['url'], role_path=person_dict['role_name'])
-        all_href, access = role_roledict.get_all_album_link_wrapper()
+        role_dict = RoleDict(role_url=person_dict['url'], role_path=person_dict['role_name'])
+        all_href, access = role_dict.get_all_album_link_wrapper()
         person_dict['online_total'] = len(all_href)
         miss_index_href = []
         miss_index_str = []
@@ -42,8 +42,8 @@ class DatabaseInspector():
         # print(list(a))
 
 
-        role_roledict.get_albums_info(all_href=miss_index_href, len_all_href=len(all_href), miss_index_str=miss_index_str)
-        person_dict['album'].update(role_roledict.album_index_dict)
+        role_dict.get_albums_info(all_href=miss_index_href, len_all_href=len(all_href), miss_index_str=miss_index_str)
+        person_dict['album'].update(role_dict.album_index_dict)
         person_dict['album'] = dict(sorted(person_dict['album'].items(), key=lambda item: item[0]))
 
         with open(self.path_to_json + 'json/database/' + file, "w") as f:
@@ -60,7 +60,7 @@ class DatabaseInspector():
     def database_inspect(self):
         # roles_dict = get_roles_dict()
         files = os.listdir(self.path_to_json + 'json/database')
-        # files.remove('roles_database.json')
+        files.remove('anonymous.json')
 
         for file in files:
             f = open(self.path_to_json + 'json/database/' + file, 'r')

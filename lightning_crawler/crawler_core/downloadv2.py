@@ -63,4 +63,4 @@ class DownloadV2(Download):
                     for i in need_update_index_str:
                         t.submit(self.down_one_albumV2, index_str=i)
                         # time.sleep(60)
-                    print(self.role_path + "\tupdate: " + str(len(need_update_index_str)) + "\tTotal: " + str(len(all_href)))
+                    print(self.role_path + "\tupdate: " + str(len(need_update_index_str)))

@@ -5,10 +5,8 @@ description = "Lightning_Crawler"
 
 def lightning_crawler():
     print(f'argv: {sys.argv}')
-    # the cwd must be the root of the respository
     # if os.path.split(os.getcwd())[-1] == 'scripts':
     #     os.chdir('../')
-    #
 
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('-u', '--update', action='store_true', help='Update ')

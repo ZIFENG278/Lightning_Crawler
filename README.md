@@ -1,75 +1,126 @@
-# 图片爬虫工具（油头党专用）
-[中文 Chinese](https://github.com/ZIFENG278/Greaseheads_share)
+# Lightning Crawler
 
-[英文 English](https://github.com/ZIFENG278/Greaseheads_share/blob/master/README_EN.md)
-
-> 爬虫实战
+> A professional website assistant for downloading photo albums, simple, efficient, and fast, download the photo albums you need.
 >
-> 本次针对非客户端渲染的无加密的图片网站下手，该网站更新速度快，图册完善且非常适合爬取的第三方图片网[~~点击跳转~~]()，测试时在国外测试的，不清楚国内是否被墙，看具体情况科学上网。
->
-> Linux/mac用户安装所需库后添加文件夹后修改保存路径后可直接运行
->
-> windows用户需修改保存路径的反斜杠
+> Photo website: https://www.xsnvshen.com/
 
+[Chinese Version](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README_CN.md)
 
+[English Version](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README.md)
 
-## Linux/Mac Usage
+## Setup
 
-> 推荐使用conda环境 ***python>=3.7***
+> ***python>=3.7***
 
-- **抓取master分支（main分支无内容）**
+- **Clone the repository**
 
 ```bash
 git clone https://github.com/ZIFENG278/Greaseheads_share.git
 ```
-- 或者下载zip压缩包
+- Alternatively, download the zip archive
 ```bash
 wget https://github.com/ZIFENG278/Greaseheads_share/archive/refs/heads/master.zip
 ```
-- **安装所需环境**
+- **Install the required environment**
 
 ```bash
-pip3 install -r requirements.txt
+cd Lightning_Crawler
+./setup.sh
 ```
 
-- (option)挑选你喜欢的角色复制url到url_ycc_main处 否则默认推荐角色, 并代码同目录先新建一个你喜欢的角色名的文件夹，且在get_tasks函数处修改路径，不改则是默认Example（参考assets/image）
-
-
-- **运行程序**
+## Usage
 ```bash
-python3 auto_download_xiecheng.py
+cd Lightning_Crawler
+./start_env.sh
+cd ./crawler_scripts
 ```
-- **后续更新图集，在更新程序中放好角色主页url，与角色路径到各自的list中，url与人物路径顺序必须一一对应，确保路径无误后运行**
+
+### Parameter Description
+
 ```bash
-python3 auto_update_xiecheng.py
-````
-查看文件夹时建议选择以last modifide排序，越新越好看，并且以后想更新最新图集只需稍微改一下代码就可以补齐，大致时间线也不会乱
+python3 Lightning_crawler --help
+```
 
-实测ubuntu开8线程以上也有部分段too many open files 实测8无问题，默认线程池为8
+**-u, --update** Update
 
-Mac M1芯片16线程测试时初段直接显示too many open files自动终止
+**-i, --inspect** Inspect
 
-如果电脑配置比较高可尝试使用更多线程，例如固态硬盘SSD高速写入应该会避免，当然也可以直接修改系统open files maximum的值
+**-d, --database** Database
 
-[too many open files 报错解决可参考](https://support.axway.com/kb/101749/language/en#:~:text=The%20%22Too%20many%20open%20files%22%20message%20means%20that%20the%20operating,command%20displays%20the%20current%20limit.)
+**-l, --album** Photo Albums
 
+**-a, --add_role** Add a new role
 
+**-anon, --anonymous** Anonymous photos
 
-## 开发思路
+**-ls, --list** List all
 
-> python爬虫
+**--role_paht** Role name
 
-1. 利用requests对人物的主页进行访问，获取源码后放进BeautifulSoup里，通过标签查找找出主页所有图册的href
+**--role_url** Role homepage or anonymous photo album URL
 
+### Examples
 
-2. 通过多线程对每个href先进行同步线程访问获取网页源码, 首先利用BeautifulSoup与正则表达式获取相册的名字以作文件夹名称与第一张jpg的url和单个图册的图片数,因为网页源码实质提供了所有低清预览，但有第一张高清预览图jpg的url, 需要简单拼接一下得到完整的单个高清图url, 所以需要提取前半段的url
+> Software logic:
+>
+> 1. Enter the name of the role to be downloaded and the role's homepage URL. The database will be automatically created after entry.
+> 
+> 2. Check the integrity of the local database.
+>
+> 3. Download photo albums.
+>
+> 4. Check the integrity of the photo albums.
+>
+> If you encounter IP blocking, try using a mobile hotspot. When creating or updating the database encounters IP blocking, simply enable airplane mode, then check the database to automatically repair the missing database.
 
+- List all currently entered role names and website URLs
 
-3. 得到所有预处理数据后，利用协程进行异步访问与异步写入，用到asyncio，aiohttp ，aiofiles 三个库，~~因为网站有时候会存在相同名称的图集，所以遇到相同名称的后面加上new防止覆盖，宁可多下也不能错过~~（目前利用子href获取标题后修复了这个问题）
+  ```bash
+  python3 Lightning_crawler -ls
+  ```
 
-   **windows用户需要修改一下路径，改成反斜杠，mkdir函数不清楚windows用户是否能跑，可能要稍微改改**
+- View the role database
 
+  ```bash
+  python3 Lightning_crawler -ls --role_path name_of_role
+  ```
 
+- Add a new role
 
+  ```bash
+  python3 Lightning_crawler -a --role_path XXX --role_url www.XXX.com
+  ```
 
+- Update the database
 
+  ```bash
+  python3 Lightning_crawler -u -d --all # update all
+  python3 Lightning_crawler -u --database --role_path XXX # update specify role
+  ```
+
+- Check the database (ensure the database integrity, as network issues may cause partial loss)
+
+  ```bash
+  python3 Lightning_crawler -i -d --all # inspect all
+  python3 Lightning_crawler -i --database --role_path XXX # inspect specify role
+  ```
+
+- Download all photo albums of a role
+
+  ```bash
+  python3 Lightning_crawler -u -l -all # update all roles album
+  python3 Lightning_crawler -u --album --role_path # update specify role album
+  ```
+
+- Check the integrity of the image library (ensure the image library integrity, as network issues may cause partial loss)
+
+  ```bash
+  python3 Lightning_crawler -i -l -all # inspect all roles album
+  python3 Lightning_crawler -i --album --role_path # inspect specify role album
+  ```
+
+- Download anonymous photos (photo albums without a role homepage or for separate storage)
+
+  ```bash
+  python3 Lightning_crawler -anon --role_path www.XXX.com
+  ```

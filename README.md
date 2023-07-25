@@ -1,12 +1,12 @@
 # Lightning Crawler
 
 > A professional website assistant for downloading photo albums, simple, efficient, and fast, download the photo albums you need.
->
+
 > Photo website: https://www.xsnvshen.com/
 
-[Chinese Version](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README_CN.md)
+[中文 Chinese](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README.md)
 
-[English Version](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README.md)
+[English](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README.md)
 
 ## Setup
 
@@ -31,7 +31,7 @@ cd Lightning_Crawler
 ## Usage
 ```bash
 cd Lightning_Crawler
-./start_env.sh
+. start_env.sh
 cd ./crawler_scripts
 ```
 
@@ -55,9 +55,9 @@ python3 Lightning_crawler --help
 
 **-ls, --list** List all
 
-**--role_paht** Role name
+**--name** Role name
 
-**--role_url** Role homepage or anonymous photo album URL
+**--url** Role homepage or anonymous photo album URL
 
 ### Examples
 
@@ -82,45 +82,45 @@ python3 Lightning_crawler --help
 - View the role database
 
   ```bash
-  python3 Lightning_crawler -ls --role_path name_of_role
+  python3 Lightning_crawler -ls --name name_of_role
   ```
 
 - Add a new role
 
   ```bash
-  python3 Lightning_crawler -a --role_path XXX --role_url www.XXX.com
+  python3 Lightning_crawler -a --name XXX --url www.XXX.com
   ```
 
 - Update the database
 
   ```bash
   python3 Lightning_crawler -u -d --all # update all
-  python3 Lightning_crawler -u --database --role_path XXX # update specify role
+  python3 Lightning_crawler -u --database --name XXX # update specify role
   ```
 
 - Check the database (ensure the database integrity, as network issues may cause partial loss)
 
   ```bash
   python3 Lightning_crawler -i -d --all # inspect all
-  python3 Lightning_crawler -i --database --role_path XXX # inspect specify role
+  python3 Lightning_crawler -i --database --name XXX # inspect specify role
   ```
 
 - Download all photo albums of a role
 
   ```bash
   python3 Lightning_crawler -u -l -all # update all roles album
-  python3 Lightning_crawler -u --album --role_path # update specify role album
+  python3 Lightning_crawler -u --album --name # update specify role album
   ```
 
 - Check the integrity of the image library (ensure the image library integrity, as network issues may cause partial loss)
 
   ```bash
   python3 Lightning_crawler -i -l -all # inspect all roles album
-  python3 Lightning_crawler -i --album --role_path # inspect specify role album
+  python3 Lightning_crawler -i --album --name # inspect specify role album
   ```
 
 - Download anonymous photos (photo albums without a role homepage or for separate storage)
 
   ```bash
-  python3 Lightning_crawler -anon --role_path www.XXX.com
+  python3 Lightning_crawler -anon --url www.XXX.com
   ```

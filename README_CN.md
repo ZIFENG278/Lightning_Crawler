@@ -32,7 +32,7 @@ cd Lightning_Crawler
 ## Usage 
 ```bash
 cd Lightning_Crawler
-./start_env.sh
+. start_env.sh
 cd ./crawler_scripts
 ```
 ### 参数解析
@@ -53,9 +53,9 @@ python3 Lightning_crawler --help
 
 **-ls, --list** 列出
 
-**--role_paht** 角色名字
+**--name** 角色名字
 
-**--role_url** 角色主页或匿名写真集URL
+**--url** 角色主页或匿名写真集URL
 
 
 
@@ -82,45 +82,45 @@ python3 Lightning_crawler --help
 - 查看角色数据库
 
   ```bash
-  python3 Lightning_crawler -ls --role_path name_of_role
+  python3 Lightning_crawler -ls --name name_of_role
   ```
 
 - 录入新角色
 
   ```bash
-  python3 Lightning_crawler -a --role_path XXX --role_url www.XXX.com
+  python3 Lightning_crawler -a --name XXX --url www.XXX.com
   ```
 
 - 更新数据库
 
   ```bash
   python3 Lightning_crawler -u -d --all # update all
-  python3 Lightning_crawler -u --database --role_path XXX #update specify role
+  python3 Lightning_crawler -u --database --name XXX #update specify role
   ```
 
 - 检查数据库（确保数据库完整，因网络问题影响可能造成部分丢失）
 
   ```bash
   python3 Lightning_crawler -i -d --all # inspect all
-  python3 Lightning_crawler -i --database --role_path XXX #inspect specify role
+  python3 Lightning_crawler -i --database --name XXX #inspect specify role
   ```
 
 - 下载角色所有写真
 
   ```bash
   python3 Lightning_crawler -u -l -all # update all roles album
-  python3 Lightning_crawler -u --album --role_path # update specify role album
+  python3 Lightning_crawler -u --album --name # update specify role album
   ```
 
 - 检查图库完整性（确保图库完整，因网络问题影响可能造成部分丢失）
 
   ```bash
   python3 Lightning_crawler -i -l -all # inspect all roles album
-  python3 Lightning_crawler -i --album --role_path # inspect specify role album
+  python3 Lightning_crawler -i --album --name # inspect specify role album
   ```
 
 - 下载匿名写真（无角色主页的写真集或只想单独保存）
 
   ```bash
-  python3 Lightning_crawler -anon --role_path www.XXX.com
+  python3 Lightning_crawler -anon --url www.XXX.com
   ```

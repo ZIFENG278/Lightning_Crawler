@@ -1,5 +1,4 @@
 from lightning_crawler.crawler_core.downloadv2 import *
-from lightning_crawler.inspect.build_db import get_role_database_dict
 
 import os
 class Inspector(DownloadV2):

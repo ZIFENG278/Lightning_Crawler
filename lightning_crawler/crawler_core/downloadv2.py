@@ -19,12 +19,13 @@ class DownloadV2(Download):
         harf_link = self.role_database['album'][index_str]["harf_link"]
         folder_name = mkdir_with_new("../dist/" + self.role_path + "/" + folder_name)
         image_num = self.role_database['album'][index_str]["image_num"]
+        album_url = self.role_database['album'][index_str]["album_url"]
         tasks = []
         for i in range(image_num):
             full_link = harf_link + str(i).rjust(3, '0') + '.jpg'
             img_name = full_link.split("/")[-1]
             # tasks.append(full_link)
-            tasks.append(self.aiodownload(full_link, img_name, folder_name))
+            tasks.append(self.aiodownload(full_link, img_name, folder_name, album_url))
         await asyncio.wait(tasks)
         print(folder_name)
 

@@ -1,22 +1,22 @@
-import os
+# import os
+#
+# from lightning_crawler.inspect.build_db import RoleDict
+#
+#
+#
+# class DatabaseUpdater(RoleDict):
+#     """
+#     no need
+#     """
+#     def __init__(self):
+#         pass
+#
+#
+#     def update_role(self):
+#         pass
 
-from lightning_crawler.inspect.build_db import RoleDict
 
-
-
-class DatabaseUpdater(RoleDict):
-    """
-    no need
-    """
-    def __init__(self):
-        pass
-
-
-    def update_role(self):
-        pass
-
-
-    def update_all_roles(self):
-        pass
+    # def update_all_roles(self):
+    #     pass
 
 

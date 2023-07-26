@@ -1,5 +1,3 @@
-import os
-import shutil
 import requests
 import re
 import asyncio
@@ -76,8 +74,7 @@ class Download:
         try:
             all_href = self.get_all_album_link()
 
-        except Exception as e:
-            print(e)
+        except:
             if self.role_path != "anonymous":
                 print('\033[93m' + self.role_path + " url broken. can not access the url. FAIL" + '\033[0m')
                 access = False
@@ -88,9 +85,9 @@ class Download:
     def get_all_album_link(self):  # done
         role_main_resp = requests.get(self.role_url, headers=self.header)
         role_main_resp.encoding = 'utf-8'
-        # print(ycc_main_resp.text)
+        print(role_main_resp.text)
         role_main_resp_bs = BeautifulSoup(role_main_resp.text, "html.parser")
-        find_main_class = role_main_resp_bs.find("div", class_="star-mod entryAblum")  # 返回string
+        find_main_class = role_main_resp_bs.find("ul", class_="showbox")  # 返回string
         # print(find_main_class)
         role_childs = find_main_class.find_all("a")
         # print(ycc_child_name)
@@ -105,15 +102,12 @@ class Download:
             role_href_list.append(self.main_url + href)
 
         role_main_resp.close()
+        print(len(role_href_list))
         return role_href_list
 
-    async def aiodownload(self, full_link, img_name, folder_name, album_url=None):
-        header_with_url_referer = {
-            "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36",
-            "Referer": album_url
-        }
+    async def aiodownload(self, full_link, img_name, folder_name):
         async with aiohttp.ClientSession() as session:
-            async with session.get(full_link, headers=header_with_url_referer) as resp:
+            async with session.get(full_link, headers=self.header_with_referer) as resp:
                 jpg_content = await resp.read()
                 # print(type(jpg_content), img_name)
                 async with aiofiles.open(folder_name + "/" + img_name, 'wb') as f:
@@ -164,6 +158,9 @@ class Download:
         # update_single_role_json(self.role_path) #
 
 
+
+a = Download(role_path='芝芝_Booty', role_url='https://www.xsnvshen.com/album/41357')
+a.get_all_album_link()
 
 
 

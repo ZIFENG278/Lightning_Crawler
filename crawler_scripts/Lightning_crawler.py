@@ -17,8 +17,10 @@ def lightning_crawler():
     parser.add_argument('-l','--album', action='store_true', help='Album')
     parser.add_argument('--all', action='store_true', help='Select all')
     parser.add_argument('-ls', '--list', action='store_true', help='List all roles in default')
-    parser.add_argument('-a', '--add_role', action='store_true', help='Add role')
+    parser.add_argument('-a', '--add_role', action='store_true', help='Add role from homepage')
+    parser.add_argument('-s', '--add_search', action='store_true', help='Add role from search')
     parser.add_argument('-anon','--anonymous', action='store_true', help='Download anonymous album')
+    parser.add_argument('-r', '--remove', action='store_true', help='Remove role from list')
     parser.add_argument('--name', type=str, help='Role name')
     parser.add_argument('--url', type=str, help='URL')
     args = parser.parse_args()
@@ -74,8 +76,11 @@ def lightning_crawler():
                      'example:\n'
                      'python3 lightning_crawler.py -a --name xxx -- url xxx.com\n')
 
-    if args.add_role and args.name and args.url:
+    if args.add_role and args.name and args.url and not args.add_search:
         add_role(args.name, args.url)
+
+    if args.add_role and args.add_search and args.name and args.url:
+        add_search_role(args.name, args.url)
 
     if args.anonymous and not args.url:
         parser.error('Your command has insufficient parameters\n'
@@ -84,6 +89,14 @@ def lightning_crawler():
 
     if args.anonymous and args.url:
         anonymous_url_down(args.url)
+
+    if args.remove and args.name:
+        remove_role(args.name)
+
+    if args.remove and not args.name:
+        parser.error('Your command has insufficient parameters\n'
+                     'example:\n'
+                     'python3 lightning_crawler.py -r --name xxx\n')
 
 
 lightning_crawler()

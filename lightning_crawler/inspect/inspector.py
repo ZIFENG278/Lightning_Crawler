@@ -46,6 +46,7 @@ class Inspector(DownloadV2):
     async def get_tasksV2(self, index, loss_images):
         folder_name = self.role_database['album'][index]["index"] + self.role_database['album'][index]["folder_name"]
         harf_link = self.role_database['album'][index]["harf_link"]
+        album_link = self.role_database['album'][index]["album_url"]
         folder_name = "../dist/" + self.role_path + "/" + folder_name
         # image_num = self.role_database['album'][index]["image_num"]
         tasks = []
@@ -53,7 +54,7 @@ class Inspector(DownloadV2):
             full_link = harf_link + i
             img_name = i
             # tasks.append(full_link)
-            tasks.append(self.aiodownload(full_link, img_name, folder_name))
+            tasks.append(self.aiodownload(full_link, img_name, folder_name, album_url=album_link))
         await asyncio.wait(tasks)
         print(folder_name)
 

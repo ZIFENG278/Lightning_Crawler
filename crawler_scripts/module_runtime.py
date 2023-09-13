@@ -73,7 +73,8 @@ def inspect_album_all():
 
 def inspect_album_role(role_path):
     roles_dict = get_roles_dict(path_to_json='../lightning_crawler/')
-    role_url = roles_dict[role_path]
+    source = get_source(role_path)
+    role_url = roles_dict[source][role_path]
     fixer = Inspector(role_path=role_path, role_url=role_url)
     fixer.inspect_image_num()
 

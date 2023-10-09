@@ -4,7 +4,7 @@
 
 > Photo website: https://www.xsnvshen.com/
 
-[中文 Chinese](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README.md)
+[中文 Chinese](https://github.com/ZIFENG278/Lightning_Crawler/blob/master/README_CN.md)
 
 [English](https://github.com/ZIFENG278/Lightning_Crawler/blob/rebuild/README.md)
 
@@ -15,11 +15,11 @@
 - **Clone the repository**
 
 ```bash
-git clone https://github.com/ZIFENG278/Greaseheads_share.git
+git clone https://github.com/ZIFENG278/Lightning_Crawler.git
 ```
 - Alternatively, download the zip archive
 ```bash
-wget https://github.com/ZIFENG278/Greaseheads_share/archive/refs/heads/master.zip
+wget https://github.com/ZIFENG278/Lightning_Crawler/archive/refs/heads/master.zip
 ```
 - **Install the required environment**
 

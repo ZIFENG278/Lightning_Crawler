@@ -114,42 +114,37 @@ class Download:
             "Referer": album_url
         }
         async with aiohttp.ClientSession() as session:
-            try:
-                async with session.get(full_link, headers=header_with_url_referer) as resp:
-                    jpg_content = await resp.read()
-                    img_format = imghdr.what(None, h=jpg_content)
-                    # print(img_format)
-                    if img_format == 'webp':
-                        # Convert webp to jpeg using PIL
-                        img = Image.open(BytesIO(jpg_content))
-                        output = BytesIO()
-                        img.convert('RGB').save(output, format='JPEG')
-                        jpg_content = output.getvalue()
-                    # print(type(jpg_content), img_name)
-                    async with aiofiles.open(folder_name + "/" + img_name, 'wb') as f:
-                        await f.write(jpg_content)
-
-                resp.raise_for_status()
-
-            except aiohttp.ClientResponseError as e:
-                print(f"Error downloading image: {e}")
-            except Exception as e:
-                print(f"Unexpected error: {e}")
+            async with session.get(full_link, headers=header_with_url_referer) as resp:
+                jpg_content = await resp.read()
+                img_format = imghdr.what(None, h=jpg_content)
+                # print(img_format)
+                if img_format == 'webp':
+                    # Convert webp to jpeg using PIL
+                    img = Image.open(BytesIO(jpg_content))
+                    output = BytesIO()
+                    img.convert('RGB').save(output, format='JPEG')
+                    jpg_content = output.getvalue()
+                # print(type(jpg_content), img_name)
+                async with aiofiles.open(folder_name + "/" + img_name, 'wb') as f:
+                    await f.write(jpg_content)
+                    # await f.close()
                     # print(folder_name)
+            # resp.close()
         # print(img_name + " over!")
+        # await session.close()
 
     async def get_tasks(self, url, index):
         data = self.get_pre_data(url)
         add_index = ''
         if index != '':
             add_index = str(index).rjust(3, '0')
-        folder_name = mkdir_with_new("../dist/" + self.role_path + "/" + add_index + data[1])  # 更改路径
+        folder_name = mkdir_with_new("./test" + self.role_path + "/" + add_index + data[1])  # 更改路径
         tasks = []
         for jpgs in range(data[2]):
             full_link = data[0] + str(jpgs).rjust(3, '0') + '.jpg'
             # print(full_link)
             img_name = full_link.split("/")[-1]
-            tasks.append(self.aiodownload(full_link, img_name, folder_name))
+            tasks.append(self.aiodownload(full_link, img_name, folder_name, album_url=url))
 
         await asyncio.wait(tasks)
         print(folder_name)
@@ -158,6 +153,7 @@ class Download:
         # print('down_one')
         # signal_album_url = 'https://www.xsnvshen.com/album/39192'
         # get_pre_data(url)
+        # print(url)
         asyncio.run(self.get_tasks(url, index))
 
     def start(self):  # both update and start
@@ -168,7 +164,7 @@ class Download:
             self.down_one_album(self.role_url, index='')
 
         elif access and self.role_path != "anonymous":
-            need_update_num = get_need_update_num(self.role_path, len(all_href))
+            need_update_num = 1
             with ThreadPoolExecutor(8) as t:  # 更改线程池数量
                 for i in range(need_update_num - 1, -1, -1):
                     t.submit(self.down_one_album, url=all_href[i], index=len(all_href) - 1 - i)
@@ -177,7 +173,9 @@ class Download:
 
         # update_single_role_json(self.role_path) #
 
+role_url = 'https://www.xsnvshen.com/girl/22162'
+role_path = '杨晨晨_Yome'
 
-
-
+a = Download(role_url=role_url, role_path=role_path)
+a.start()
 

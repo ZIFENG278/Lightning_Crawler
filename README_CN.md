@@ -16,11 +16,11 @@
 - **抓取分支**
 
 ```bash
-git clone https://github.com/ZIFENG278/Greaseheads_share.git
+git clone https://github.com/ZIFENG278/Lightning_Crawler.git
 ```
 - 或者下载zip压缩包
 ```bash
-wget https://github.com/ZIFENG278/Greaseheads_share/archive/refs/heads/master.zip
+wget https://github.com/ZIFENG278/Lightning_Crawler/archive/refs/heads/master.zip
 ```
 - **安装所需环境**
 

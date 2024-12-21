@@ -9,7 +9,9 @@ from bs4 import BeautifulSoup
 from lightning_crawler.util.mkdir import mkdir_with_new
 from lightning_crawler.util.get_folder_num import get_need_update_num
 from concurrent.futures import ThreadPoolExecutor
-
+import imghdr
+from PIL import Image
+from io import BytesIO
 
 class Download:
     """
@@ -118,6 +120,16 @@ class Download:
             async with aiohttp.ClientSession(timeout=timeout) as session:
                 async with session.get(full_link, headers=header_with_url_referer) as resp:
                     jpg_content = await asyncio.wait_for(resp.read(), timeout=15)  # 限制读取时间
+
+                    img_format = imghdr.what(None, h=jpg_content)
+                    # print(img_format)
+                    if img_format == 'webp':
+                        # Convert webp to jpeg using PIL
+                        img = Image.open(BytesIO(jpg_content))
+                        output = BytesIO()
+                        img.convert('RGB').save(output, format='JPEG')
+                        jpg_content = output.getvalue()
+
                     async with aiofiles.open(folder_name + "/" + img_name, 'wb') as f:
                         await f.write(jpg_content)
         except asyncio.TimeoutError:

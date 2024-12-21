@@ -47,15 +47,16 @@ class Inspector(DownloadV2):
         folder_name = self.role_database['album'][index]["index"] + self.role_database['album'][index]["folder_name"]
         harf_link = self.role_database['album'][index]["harf_link"]
         album_link = self.role_database['album'][index]["album_url"]
-        folder_name = "../dist/" + self.role_path + "/" + folder_name
+        folder_path = "../dist/" + self.role_path + "/" + folder_name
         # image_num = self.role_database['album'][index]["image_num"]
         tasks = []
         for i in loss_images:
             full_link = harf_link + i
             img_name = i
             # tasks.append(full_link)
-            tasks.append(self.aiodownload(full_link, img_name, folder_name, album_url=album_link))
-        await asyncio.wait(tasks)
+            tasks.append(self.aiodownload(full_link, img_name, folder_path, album_url=album_link))
+        for coro in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc=folder_name[:3]):
+            await coro
         print(folder_name)
 
 

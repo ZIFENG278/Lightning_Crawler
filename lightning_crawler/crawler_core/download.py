@@ -112,17 +112,18 @@ class Download:
             "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36",
             "Referer": album_url
         }
-        async with aiohttp.ClientSession() as session:
-            async with session.get(full_link, headers=header_with_url_referer) as resp:
-                jpg_content = await resp.read()
-                # print(type(jpg_content), img_name)
-                async with aiofiles.open(folder_name + "/" + img_name, 'wb') as f:
-                    await f.write(jpg_content)
-                    await f.close()
-                    # print(folder_name)
-            resp.close()
-        # print(img_name + " over!")
-        await session.close()
+        try:
+            # 超时时间为 2 秒
+            timeout = aiohttp.ClientTimeout(total=20)
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.get(full_link, headers=header_with_url_referer) as resp:
+                    jpg_content = await asyncio.wait_for(resp.read(), timeout=15)  # 限制读取时间
+                    async with aiofiles.open(folder_name + "/" + img_name, 'wb') as f:
+                        await f.write(jpg_content)
+        except asyncio.TimeoutError:
+            print(f"Timeout occurred while downloading {img_name} from {full_link}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     async def get_tasks(self, url, index):
         data = self.get_pre_data(url)

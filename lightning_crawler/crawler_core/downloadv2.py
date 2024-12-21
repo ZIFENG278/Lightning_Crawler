@@ -2,7 +2,7 @@ from lightning_crawler.crawler_core.download import *
 from lightning_crawler.inspect.build_db import get_role_database_dict
 from lightning_crawler.util.get_folder_num import get_need_update_num_from_db
 from lightning_crawler.util.get_folder_num import get_need_update_from_dbV2
-
+from tqdm import tqdm
 class DownloadV2(Download):
     """
     Download image class base on database, can not install anonymous album
@@ -17,7 +17,7 @@ class DownloadV2(Download):
     async def get_tasksV2(self, index_str):
         folder_name = index_str + self.role_database['album'][index_str]["folder_name"]
         harf_link = self.role_database['album'][index_str]["harf_link"]
-        folder_name = mkdir_with_new("../dist/" + self.role_path + "/" + folder_name)
+        folder_path = mkdir_with_new("../dist/" + self.role_path + "/" + folder_name)
         image_num = self.role_database['album'][index_str]["image_num"]
         album_url = self.role_database['album'][index_str]["album_url"]
         tasks = []
@@ -25,9 +25,13 @@ class DownloadV2(Download):
             full_link = harf_link + str(i).rjust(3, '0') + '.jpg'
             img_name = full_link.split("/")[-1]
             # tasks.append(full_link)
-            tasks.append(self.aiodownload(full_link, img_name, folder_name, album_url))
-        await asyncio.wait(tasks)
+            tasks.append(self.aiodownload(full_link, img_name, folder_path, album_url))
+
+        for coro in tqdm(asyncio.as_completed(tasks), total=image_num, desc=folder_name[:3]):
+            await coro
+
         print(folder_name)
+
 
         # print(tasks)
 
